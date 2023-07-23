@@ -1,25 +1,213 @@
 body {
     font-family: Arial, sans-serif;
     background-color: aliceblue;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.txtarea {
-    width: 100%;
-    height: 100%;
-    border: 1px solid #060606;
-    border-radius: 4px;
-    box-sizing: border-box;
-    resize: vertical;
+.container {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: inherit;    
 }
 
 .myDiv {
+    flex: 1;
     border: 1px solid #060606;
     border-radius: 4px;
     padding: 5px;
-    margin: 5px;
+    margin: 2px;
     background-color: rgb(214, 236, 255);
+    resize: vertical;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-.grey {
-    color: #676767;
+.fullscreen-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.fullscreen-popup .myDiv {
+  width: 80%;
+  height: 80%;
+  max-width: 800px;
+  max-height: 1800px;
+  overflow-y: auto;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.textarea-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    margin-bottom: 1px;
+}
+
+.txtarea {
+    flex: 1;
+    width: 100%;
+    border: 1px solid #060606;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: none;
+    overflow-y: auto;
+}
+
+/* define colors */
+
+/* .grey { */
+/*     color: #676767; */
+/* }	 */
+
+.grey {
+    color: #ccc;
+}
+
+    /* Resizable Divider */
+    .divider {
+	flex: 0;
+	cursor: ns-resize; /* Show vertical resize cursor */
+	background-color: #ccc;
+	user-drag: element;
+    }
+
+    /* Resizable Divider (Common Styles) */
+    .flex-row .divider {
+      cursor: ns-resize; /* Show vertical resize cursor */
+    }
+
+    /* Styles for flex-direction: column */
+    .flex-column .divider {
+      cursor: ew-resize; /* Show horizontal resize cursor for column direction */
+    }
+
+    /* Styles for flex-direction: row-reverse */
+    .flex-row-reverse .divider {
+      cursor: ns-resize; /* Show horizontal resize cursor for row-reverse direction */
+    }
+
+    /* Styles for flex-direction: column-reverse */
+    .flex-column-reverse .divider {
+      cursor: ew-resize; /* Show horizontal resize cursor for column-reverse direction */
+    }
+    
+
+    /* Adjustments to make the buttons look better */
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; /* Add this line to center the buttons vertically */
+}
+
+.button-container button {
+  /* Remove individual flex properties from buttons */
+  /* flex: 1; */
+  /* margin-right: 10px; */
+}
+
+    #agent {
+      flex: 1;
+      margin-right: 10px;
+    }
+
+    #but_ClearAgent {
+      flex: 0;
+    }
+
+    #but_send {
+      flex: 1;
+      margin-right: 10px;
+    }
+
+    #but_ClearPrompt {
+      flex: 0;
+    }
+
+    #but_AddToHistory {
+      flex: 1;
+      margin-right: 10px;
+    }
+
+    #but_ClearResponse {
+      flex: 0;
+    }
+
+/* Adjustments to make the header look better */
+
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+#agentHeading {
+    font-size: 24px;
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+#agentDescription {
+    font-size: 14px;
+    margin: 0;
+}	
+
+
+
+/* Adjustments to make the footer look better */
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+.footer label, .footer select {
+    margin-right: 10px;
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+}
+
+.footer img {
+    border: none;
+}
+
+/* Style the anchor link as needed */
+.footer-right a {
+    text-decoration: none;
+    color: #333;
+}
+
+.footer-right a:hover {
+    opacity: 0.8;
+}
+
+

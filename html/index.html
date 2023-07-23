@@ -1,77 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <title>SingleTom</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="functions.js"></script>
-    <script src="apikeys.js"></script>
-    <script src="agents.js"></script>
-    <script src="models.js"></script>
-    <script src="dropTextFile.js"></script>
-</head>
-
-<body>
-    <h1 id="agentHeading"></h1>
-    <div class="myDiv">
-        <span><b>SYSTEM PROMPT</b> - </span>
-        <label for="agent">Agent:</label>
-        <select id="agent" title="Use this agent"></select> <span id="agentDescription" class="grey">.</span>
-        <textarea id="systemprompt" title="This is the agent configuration" class="txtarea" rows="4" cols="50"
-            placeholder="SYSTEM PROMPT..."></textarea>
+    <link rel="stylesheet" href="styles.css">    
+  </head>
+  <body>
+    <div class="header">
+      <h1 id="agentHeading"></h1>
+      <h4 id="agentDescription" class="grey">.</h4>
     </div>
-    <div class="myDiv">
-        <span><b>HISTORY</b></span>
-        <button id="but_ClearHistory" title="Clear the History">Clear</button>
-        <textarea id="history"
+    
+    <div class="container">
+      <div class="textarea-wrapper">
+        <div class="myDiv">
+          <span><b>AGENT</b></span>
+	  <div class="button-container">	  
+            <select id="agent" title="Use this agent"></select>
+            <button id="but_ClearAgent" title="Clear the system prompt.">Clear</button>
+          </div>
+          <textarea id="systemprompt"
+		    title="This is the agent configuration" class="txtarea" rows="4" cols="50"
+                    placeholder="SYSTEM PROMPT..."></textarea>
+        </div>
+      </div>
+      <div class="divider" id="divider1"></div>
+
+      <div class="textarea-wrapper">
+        <div class="myDiv">
+          <span><b>HISTORY</b></span>
+          <button id="but_ClearHistory" title="Clear the History">Clear</button>
+          <textarea id="history"
             title="This is the conversation history (memory). You can edit it and drag/drop text documents here to add them."
             class="txtarea DropfileContent" rows="4" cols="50"
             placeholder="HISTORY... (Drag/drop text documents here)"></textarea>
+        </div>
+      </div>
+      <div class="divider" id="divider2"></div>
+
+      <div class="textarea-wrapper">
+        <div class="myDiv">
+          <span><b>USER PROMPT</b> </span>
+	  <div class="button-container">	  
+            <button id="but_send" title="Send the prompt">Send</button>
+            <button id="but_ClearPrompt" title="Clear the prompt">Clear</button>
+          </div>
+          <textarea id="userprompt"
+		    title="Write your prompt here" class="txtarea" rows="4" cols="50"
+                    placeholder="USER PROMPT..."></textarea>
+          <div id="ResponseInNumbers"></div>
+        </div>
+      </div>
+      <div class="divider" id="divider3"></div>
+
+      <div class="textarea-wrapper">
+        <div class="myDiv">
+          <span><b>RESPONSE</b></span>
+	  <div class="button-container">	  
+            <button id="but_AddToHistory"
+		    title="Add your prompt and the response to the conversation history">ADD TO
+              HISTORY</button>
+            <button id="but_ClearResponse" title="Clear the response">Clear</button>
+          </div>	  
+          <textarea id="response"
+		    title="The agents response arrives here" class="txtarea" rows="4" cols="50"
+                    placeholder="RESPONSE..."></textarea>
+        </div>
+      </div>
     </div>
-    <div class="myDiv">
-        <span><b>USER PROMPT</b> </span>
-        <button id="but_ClearPrompt" title="Clear the prompt">Clear</button>
-        <textarea id="userprompt" title="Write your prompt here" class="txtarea" rows="4" cols="50"
-            placeholder="USER PROMPT..."></textarea>
-        <button id="but_send" title="Send the prompt">Send</button>
+
+    <div class="footer">
+      <div class="footer-left">
         <label for="model">Model:</label>
-        <select id="model" title="Use this model"></select>
+        <select id="model" title="Use this model" data-persist="true"></select>
         <label for="temperature">Temp:</label>
-        <select id="temperature" title="Randomness">
-            <option value="0.01">0.01</option>
-            <option value="0.1">0.1</option>
-            <option value="0.2">0.2</option>
-            <option value="0.3" selected>0.3</option>
-            <option value="0.4">0.4</option>
-            <option value="0.5">0.5</option>
-            <option value="0.6">0.6</option>
-            <option value="0.7">0.7</option>
-            <option value="0.8">0.8</option>
-            <option value="0.9">0.9</option>
-            <option value="1.0">1.0</option>
+        <select id="temperature" title="Randomness" data-persist="true">
+          <option value="0.01">0.01</option>
+          <option value="0.1">0.1</option>
+          <option value="0.2">0.2</option>
+          <option value="0.3" selected>0.3</option>
+          <option value="0.4">0.4</option>
+          <option value="0.5">0.5</option>
+          <option value="0.6">0.6</option>
+          <option value="0.7">0.7</option>
+          <option value="0.8">0.8</option>
+          <option value="0.9">0.9</option>
+          <option value="1.0">1.0</option>
         </select>
         <label for="max_tokens">Max:</label>
-        <select id="max_tokens" title="Reserve this many tokens for the agents response">
-            <option value="auto" selected>AUTO</option>
-            <option value="256">256</option>
-            <option value="400">400</option>
-            <option value="600">600</option>
-            <option value="800">800</option>
-            <option value="1000">1000</option>
+        <select id="max_tokens" title="Reserve this many tokens for the agent's response" data-persist="true">
+          <option value="auto" selected>AUTO</option>
+          <option value="256">256</option>
+          <option value="400">400</option>
+          <option value="600">600</option>
+          <option value="800">800</option>
+          <option value="1000">1000</option>
         </select>
-        <div id="ResponseInNumbers" class="grey"></div>
+	<a id="toggleLink">NextStyle</a>
+      </div>
+      <div class="footer-right">
+        <a href="https://github.com/Slamsneider/SingleTom" target="_blank">
+          <img src="SingleTomGitHub.png" alt="SingleTom on GitHub" width="80">
+        </a>
+      </div>
     </div>
-    <div class="myDiv">
-        <span><b>RESPONSE</b></span>
-        <textarea id="response" title="The agents response arives here" class="txtarea" rows="4" cols="50"
-            placeholder="RESPONSE..."></textarea>
-        <button id="but_AddToHistory" title="Add your prompt and the response to the conversation history">ADD TO
-            HISTORY</button>
-    </div>
-    <a href="https://github.com/Slamsneider/SingleTom" target="_blank">
-        <img src="SingleTomGitHub.png" alt="SingleTom on GitHub" width="80" style="float: right;">
-    </a>
-</body>
+    
+    <!-- External JavaScript files with "defer" attribute -->
+    <script src="jquery.3.5.1.min.js" defer></script>
+    <script src="functions.js" defer></script>
+    <script src="apikeys.js" defer></script>
+    <script src="agents.js" defer></script>
+    <script src="models.js" defer></script>
+    <script src="dropTextFile.js" defer></script>
+    <script src="ui.js"></script>
 
+    <!-- Inline JavaScript -->
+    <script>
+        // Your inline script goes here
+    </script>
+
+  </body>
 </html>
+
+
