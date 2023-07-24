@@ -23,7 +23,6 @@
                     placeholder="SYSTEM PROMPT..."></textarea>
         </div>
       </div>
-      <div class="divider" id="divider1"></div>
 
       <div class="textarea-wrapper">
         <div class="myDiv">
@@ -35,8 +34,25 @@
             placeholder="HISTORY... (Drag/drop text documents here)"></textarea>
         </div>
       </div>
-      <div class="divider" id="divider2"></div>
-
+      <div class="textarea-wrapper">
+        <div class="myDiv">
+          <span><b>QUICKPROMPT</b> </span>
+	  <div class="button-container">
+            <select id="quicksource" title="Which text would you like to act on" data-persist="true">
+              <option value="response" selected>response</option>
+              <option value="history">history</option>
+              <option value="userprompt">userprompt</option>
+              <option value="systemprompt">systemprompt</option>
+            </select>
+            <button id="toggleButton" title="Toggle between editing and using the fragments">Toggle</button>
+            <button id="but_ClearQuick" title="Clear the quickprompts">Clear</button>
+          </div>
+          <textarea id="quickprompt" data-persist="true"
+		    title="Write your quickprompts here" class="txtarea" rows="4" cols="50"
+                    placeholder="QUICK PROMPTS..."></textarea>
+	  <div class="link-list" id="linkList"></div>
+        </div>
+      </div>
       <div class="textarea-wrapper">
         <div class="myDiv">
           <span><b>USER PROMPT</b> </span>
@@ -47,14 +63,11 @@
           <textarea id="userprompt"
 		    title="Write your prompt here" class="txtarea" rows="4" cols="50"
                     placeholder="USER PROMPT..."></textarea>
-          <div id="ResponseInNumbers"></div>
         </div>
       </div>
-      <div class="divider" id="divider3"></div>
-
       <div class="textarea-wrapper">
         <div class="myDiv">
-          <span><b>RESPONSE</b></span>
+          <span><b>RESPONSE</b> <div id="ResponseInNumbers"></div></span>
 	  <div class="button-container">	  
             <button id="but_AddToHistory"
 		    title="Add your prompt and the response to the conversation history">ADD TO
@@ -115,6 +128,11 @@
 
     <!-- Inline JavaScript -->
     <script>
+      <!-- <div class="divider" id="divider1"></div> -->
+      <!-- <div class="divider" id="divider2"></div> -->
+      <!-- <div class="divider" id="divider3"></div> -->
+      <!-- <div class="divider" id="divider4"></div> -->
+      
         // Your inline script goes here
     </script>
 

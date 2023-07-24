@@ -163,7 +163,6 @@ async function doSend(myModel, mySystemprompt, myHistory, myUserprompt, max_toke
                 let errorMessage = "An error occurred.";
                 // Append error object
                 errorMessage += "\n" + JSON.stringify(error);
-
                 alert(errorMessage);
             }
         });
